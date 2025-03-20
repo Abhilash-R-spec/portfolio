@@ -6,19 +6,48 @@
     <title>Abhilash - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Abhilash</h1>
-        <p>Software Developer</p>
-    </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Passionate software developer skilled in backend, frontend, mobile app development, and cloud technologies.</p>
+
+    <!-- Profile & Contact Section -->
+    <section class="profile-container">
+        <div class="profile-card">
+            <div class="photo-placeholder"><i class="fas fa-user-circle"></i></div>
+            <h1>Abhilash</h1>
+            <p class="designation">Software Developer</p>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> Idukki, Kerala - 685531</p>
+                <p><i class="fas fa-phone"></i> 6369252361</p>
+                <p><i class="fas fa-envelope"></i> abhilashramakrishnan701@gmail.com</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/abhilash-r-7049b828b" target="_blank">LinkedIn Profile</a></p>
+            </div>
+        </div>
     </section>
-    <section id="skills">
-        <h2>Technical Skills</h2>
+
+    <!-- Sections -->
+    <section class="animated-section" id="about">
+        <h2><i class="fas fa-user"></i> About Me</h2>
+        <div class="about-content">
+            <p>
+                <strong>Experienced Software Developer</strong> specializing in 
+                <span class="highlight">Spring MVC, PHP, API Development, Flutter, Cloud Infrastructure,</span> 
+                and <span class="highlight">Automation Scripting</span>.
+            </p>
+            <p>
+                Skilled in <span class="highlight">backend, frontend, mobile app development, database migrations, cloud services, DevOps,</span> 
+                and <span class="highlight">mobile app deployment</span>. Successfully deployed applications on 
+                <i class="fab fa-google-play"></i> Google Play Store and <i class="fab fa-apple"></i> Apple App Store.
+            </p>
+            <p>
+                Basic knowledge of <span class="highlight">Python</span> for 
+                <span class="highlight">Machine Learning (ML), Artificial Intelligence (AI),</span> and UI development.
+            </p>
+        </div>
+    </section>    
+
+    <section class="animated-section" id="skills">
+        <h2><i class="fas fa-tools"></i> Technical Skills</h2>
         <div class="skills-grid">
             <div class="skill"><i class="fas fa-code"></i> Java, PHP, Spring MVC</div>
             <div class="skill"><i class="fab fa-html5"></i> HTML, CSS, JavaScript</div>
@@ -26,18 +55,22 @@
             <div class="skill"><i class="fas fa-database"></i> MySQL</div>
             <div class="skill"><i class="fab fa-aws"></i> AWS Services</div>
             <div class="skill"><i class="fab fa-docker"></i> Docker, Kafka</div>
-            <div class="skill"><i class="fas fa-laptop-code"></i> Python, AI/ML Basics</div>
-            <div class="skill"><i class="fab fa-git-alt"></i> GitHub</div>
         </div>
     </section>
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <div class="certifications-grid" id="certifications-list">
-            <!-- Certifications will be loaded dynamically -->
+
+    <section class="animated-section" id="hobbies">
+        <h2><i class="fas fa-paint-brush"></i> Hobbies & Interests</h2>
+        <div class="hobbies-grid">
+            <div class="hobby"><i class="fas fa-cube"></i> Blender (3D Animation)</div>
+            <div class="hobby"><i class="fas fa-film"></i> Adobe After Effects</div>
+            <div class="hobby"><i class="fas fa-paint-brush"></i> Adobe Photoshop</div>
+            <div class="hobby"><i class="fas fa-video"></i> CyberLink PowerDirector</div>
         </div>
     </section>
+
     <footer>
         <p>&copy; 2025 Abhilash. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
