@@ -1,1 +1,1171 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abhilash R — Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg-primary: #1a1b26;
+    --bg-secondary: #16161e;
+    --bg-tertiary: #24283b;
+    --surface: #1f2335;
+    --border: #292e42;
+    --text-primary: #c0caf5;
+    --text-secondary: #a9b1d6;
+    --text-muted: #565f89;
+    --accent-blue: #7aa2f7;
+    --accent-green: #9ece6a;
+    --accent-yellow: #e0af68;
+    --accent-red: #f7768e;
+    --accent-purple: #bb9af7;
+    --accent-cyan: #7dcfff;
+    --tab-active: #24283b;
+    --scrollbar: #3b4261;
+  }
+
+  [data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f7f7f7;
+    --bg-tertiary: #e8e8e8;
+    --surface: #ffffff;
+    --border: #d4d4d4;
+    --text-primary: #2e3440;
+    --text-secondary: #4c566a;
+    --text-muted: #7a8496;
+    --accent-blue: #5e81ac;
+    --accent-green: #8fbcbb;
+    --accent-yellow: #ebcb8b;
+    --accent-red: #bf616a;
+    --accent-purple: #b48ead;
+    --accent-cyan: #88c0d0;
+    --tab-active: #e8e8e8;
+    --scrollbar: #b8b8b8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  ::selection {
+    background: var(--accent-blue);
+    color: var(--bg-primary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+
+  /* LAYOUT */
+  .portfolio-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .window-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background: var(--accent-red); }
+  .dot.yellow { background: var(--accent-yellow); }
+  .dot.green { background: var(--accent-green); }
+
+  .theme-toggle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .theme-toggle:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-blue);
+  }
+
+  .mobile-toggle {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+  }
+
+  /* MAIN LAYOUT */
+  .main-layout {
+    display: flex;
+    flex: 1;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 260px;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+    overflow-y: auto;
+    transition: transform 0.3s;
+  }
+
+  .sidebar-header {
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 12px 0;
+  }
+
+  .nav-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s;
+  }
+
+  .nav-item:hover {
+    background: var(--surface);
+    color: var(--text-primary);
+  }
+
+  .nav-item.active {
+    background: var(--tab-active);
+    color: var(--accent-blue);
+    border-left: 3px solid var(--accent-blue);
+  }
+
+  .nav-icon {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+  }
+
+  /* CONTENT AREA */
+  .content-area {
+    flex: 1;
+    overflow-y: auto;
+    background: var(--bg-primary);
+  }
+
+  .content-section {
+    display: none;
+    padding: 40px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .content-section.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* SECTION STYLES */
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-green);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+    color: var(--accent-blue);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--accent-green);
+    margin-bottom: 24px;
+  }
+
+  .description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+
+  .highlight {
+    color: var(--accent-cyan);
+    font-weight: 500;
+  }
+
+  /* META INFO */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .meta-icon {
+    font-size: 1.2rem;
+    color: var(--accent-yellow);
+  }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .stat-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-4px);
+  }
+
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  /* BUTTONS */
+  .button-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: var(--accent-blue);
+    color: var(--bg-primary);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-purple);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(122, 162, 247, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    background: var(--accent-green);
+    border: 3px solid var(--bg-primary);
+    border-radius: 50%;
+  }
+
+  .timeline-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent-yellow);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-role {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .timeline-company {
+    font-size: 1rem;
+    color: var(--accent-blue);
+    margin-bottom: 6px;
+  }
+
+  .timeline-project {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent-purple);
+    margin-bottom: 16px;
+  }
+
+  .timeline-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .timeline-list li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .timeline-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.3s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-4px);
+  }
+
+  .skill-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .skill-icon {
+    font-size: 1.8rem;
+  }
+
+  .skill-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    background: var(--accent-blue);
+    color: var(--bg-primary);
+    border-color: var(--accent-blue);
+    cursor: pointer;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent-green);
+    transform: translateY(-4px);
+  }
+
+  .contact-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .contact-value {
+    font-size: 1rem;
+    color: var(--text-primary);
+    word-break: break-word;
+  }
+
+  .contact-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover {
+    color: var(--accent-purple);
+    text-decoration: underline;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-tech {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 968px) {
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 61px;
+      bottom: 0;
+      z-index: 99;
+      transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .mobile-toggle {
+      display: block;
+    }
+
+    .logo {
+      font-size: 0.85rem;
+    }
+
+    .content-section {
+      padding: 24px 20px;
+    }
+
+    .button-group {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header {
+      padding: 10px 16px;
+    }
+
+    .window-dots {
+      display: none;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .meta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-grid,
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* OVERLAY FOR MOBILE */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 98;
+  }
+
+  .overlay.active {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="portfolio-container">
+  
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="window-dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="logo">
+        <span>~/</span>abhilash-portfolio
+      </div>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <button class="mobile-toggle" onclick="toggleSidebar()">☰ Menu</button>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">Navigation</div>
+      <ul class="nav-list">
+        <li class="nav-item active" onclick="showSection('home')">
+          <span class="nav-icon">🏠</span>
+          <span>Home</span>
+        </li>
+        <li class="nav-item" onclick="showSection('experience')">
+          <span class="nav-icon">💼</span>
+          <span>Experience</span>
+        </li>
+        <li class="nav-item" onclick="showSection('skills')">
+          <span class="nav-icon">⚡</span>
+          <span>Skills</span>
+        </li>
+        <li class="nav-item" onclick="showSection('contact')">
+          <span class="nav-icon">📧</span>
+          <span>Contact</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="content-area">
+      
+      <!-- HOME SECTION -->
+      <section class="content-section active" id="home">
+        <div class="section-title">// README.md</div>
+        
+        <h1>Abhilash R</h1>
+        <div class="subtitle">Software Developer</div>
+        <div class="tagline">$ whoami → Full-Stack Developer | Cloud Engineer | Mobile Dev</div>
+        
+        <p class="description">
+          Experienced software developer with <span class="highlight">4+ years</span> of expertise building secure, 
+          scalable backend systems and cloud infrastructure. Specialized in <span class="highlight">Java Spring MVC</span>, 
+          <span class="highlight">AWS cloud services</span>, and <span class="highlight">Flutter mobile development</span>. 
+          Proven track record implementing OCPP protocols, REST APIs, and end-to-end encryption for enterprise applications.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-icon">📍</span>
+            Chennai, Tamil Nadu, India
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">📱</span>
+            +91 6369252361
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">✉️</span>
+            abhilashramakrishnan701@gmail.com
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">4+</div>
+            <div class="stat-label">Years Exp</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">AWS</div>
+            <div class="stat-label">Cloud</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">Mobile</div>
+            <div class="stat-label">iOS/Android</div>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn btn-primary" onclick="showSection('contact')">
+            <span>📧</span>
+            Get in Touch
+          </button>
+          <button class="btn btn-secondary" onclick="showSection('experience')">
+            <span>💼</span>
+            View Experience
+          </button>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE SECTION -->
+      <section class="content-section" id="experience">
+        <div class="section-title">// experience.java</div>
+        
+        <h2>Work Experience</h2>
+
+        <div class="timeline">
+          
+          <div class="timeline-item">
+            <div class="timeline-period">Apr 2025 — Present</div>
+            <div class="timeline-role">Software Developer</div>
+            <div class="timeline-company">ITEL – Immersive Technology and Entrepreneurship Labs</div>
+            <div class="timeline-project">↳ Incubation Management Portal</div>
+            <ul class="timeline-list">
+              <li>Designed and developed secure backend REST APIs and controllers using Java Spring MVC for incubation lifecycle management and administrative workflows</li>
+              <li>Implemented end-to-end encryption to secure sensitive data across the application</li>
+              <li>Integrated Two-Factor Authentication (2FA) for enhanced user access control</li>
+              <li>Applied Spring AOP for centralized logging, security handling, and cross-cutting concerns</li>
+              <li>Implemented telemetry and application logging for monitoring, debugging, and performance analysis</li>
+              <li>Used Jenkins CI/CD for automated builds and deployment in development and testing environments</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-period">2022 — Mar 2025</div>
+            <div class="timeline-role">Software Developer</div>
+            <div class="timeline-company">Flowtrik Technologies Pvt. Ltd. — IITM Research Park</div>
+            <div class="timeline-project">↳ EV Charging Management System</div>
+            <ul class="timeline-list">
+              <li>Developed and maintained a Spring MVC–based Public EV Charging Management System implementing OCPP 1.6 protocol for real-time charger communication</li>
+              <li>Built and optimized REST APIs using Spring MVC and PHP for EV charger management and operations</li>
+              <li>Migrated MySQL database from version 5 to version 8, improving performance and compatibility</li>
+              <li>Automated cloud operations using Bash scripts for database backups, storage monitoring, and SSH automation on Linux servers</li>
+              <li>Managed AWS services including EC2, S3, SNS, and CloudWatch for monitoring and alerts</li>
+              <li>Developed Flutter mobile applications with BLE communication and Firebase authentication</li>
+              <li>Configured Google Cloud Console for Maps API, Firebase services, and OAuth 2.0 authentication</li>
+              <li>Supported deployments to Google Play Store and Apple App Store, including iOS via TestFlight</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-period">2021 — 2022</div>
+            <div class="timeline-role">Project Associate</div>
+            <div class="timeline-company">Esmito Solutions Pvt. Ltd. — IITM Research Park</div>
+            <div class="timeline-project">↳ Frontend & API Developer</div>
+            <ul class="timeline-list">
+              <li>Developed backend APIs and web applications using Spring MVC</li>
+              <li>Implemented data visualization dashboards using Highcharts, Apache ECharts, and Plotly</li>
+              <li>Optimized application performance on Apache Tomcat and Resin servers</li>
+              <li>Contributed to frontend admin panel improvements and overall system usability</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <section class="content-section" id="skills">
+        <div class="section-title">// skills.json</div>
+        
+        <h2>Technical Skills</h2>
+
+        <div class="skills-grid">
+          
+          <div class="skill-card">
+            <div class="skill-header">
+              <span class="skill-icon">☕</span>
+              <span class="skill-title">Backend Development</span>
+            </div>
+            <div class="skill-tags">
+              <span class="tag">Java</span>
+              <span class="tag">Spring MVC</span>
+              <span class="tag">Spring AOP</span>
+              <span class="tag">PHP</span>
+              <span class="tag">REST APIs</span>
+              <span class="tag">OCPP 1.6</span>
+              <span class="tag">Microservices</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <span class="skill-icon">📱</span>
+              <span class="skill-title">Mobile Development</span>
+            </div>
+            <div class="skill-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Dart</span>
+              <span class="tag">BLE Communication</span>
+              <span class="tag">Firebase Auth</span>
+              <span class="tag">Google Play</span>
+              <span class="tag">App Store</span>
+              <span class="tag">TestFlight</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <span class="skill-icon">☁️</span>
+              <span class="skill-title">Cloud & Infrastructure</span>
+            </div>
+            <div class="skill-tags">
+              <span class="tag">AWS EC2</span>
+              <span class="tag">AWS S3</span>
+              <span class="tag">AWS SNS</span>
+              <span class="tag">CloudWatch</span>
+              <span class="tag">GCP</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Linux</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <span class="skill-icon">🗄️</span>
+              <span class="skill-title">Database & DevOps</span>
+            </div>
+            <div class="skill-tags">
+              <span class="tag">MySQL</span>
+              <span class="tag">Database Migration</span>
+              <span class="tag">Bash Scripting</span>
+              <span class="tag">Jenkins CI/CD</span>
+              <span class="tag">Git</span>
+              <span class="tag">Apache Tomcat</span>
+              <span class="tag">Resin</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <span class="skill-icon">🔒</span>
+              <span class="skill-title">Security</span>
+            </div>
+            <div class="skill-tags">
+              <span class="tag">OAuth 2.0</span>
+              <span class="tag">2FA</span>
+              <span class="tag">End-to-End Encryption</span>
+              <span class="tag">JWT</span>
+              <span class="tag">SSL/TLS</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <span class="skill-icon">📊</span>
+              <span class="skill-title">Data Visualization</span>
+            </div>
+            <div class="skill-tags">
+              <span class="tag">Highcharts</span>
+              <span class="tag">Apache ECharts</span>
+              <span class="tag">Plotly</span>
+              <span class="tag">Google Maps API</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="content-section" id="contact">
+        <div class="section-title">// contact.config</div>
+        
+        <h2>Get in Touch</h2>
+        
+        <p class="description">
+          Available for full-time roles, freelance projects, and technical collaborations. 
+          Let's connect and discuss how we can work together!
+        </p>
+
+        <div class="contact-grid">
+          
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:abhilashramakrishnan701@gmail.com" class="contact-link">
+                abhilashramakrishnan701@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📱</div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">
+              <a href="tel:+916369252361" class="contact-link">
+                +91 6369252361
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">💼</div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">
+              <a href="https://linkedin.com/in/abhilash-r-7049b828b" target="_blank" class="contact-link">
+                linkedin.com/in/abhilash-r-7049b828b
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">
+              Chennai, Tamil Nadu<br>India
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">💻</div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">
+              <a href="https://github.com/abhilash-r" target="_blank" class="contact-link">
+                github.com/abhilash-r
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">⚡</div>
+            <div class="contact-label">Status</div>
+            <div class="contact-value" style="color: var(--accent-green); font-weight: 600;">
+              ● Available for Work
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>© 2026 Abhilash R</div>
+    <div class="footer-tech">
+      <div class="footer-item">
+        <span>⚡</span>
+        <span>Java Spring</span>
+      </div>
+      <div class="footer-item">
+        <span>☁️</span>
+        <span>AWS</span>
+      </div>
+      <div class="footer-item">
+        <span>📱</span>
+        <span>Flutter</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- OVERLAY FOR MOBILE -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<script>
+  // Theme Toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    html.setAttribute('data-theme', newTheme);
+    document.getElementById('theme-icon').textContent = newTheme === 'light' ? '🌙' : '☀️';
+    document.getElementById('theme-text').textContent = newTheme === 'light' ? 'Dark' : 'Light';
+    
+    localStorage.setItem('theme', newTheme);
+  }
+
+  // Load saved theme
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.getElementById('theme-icon').textContent = savedTheme === 'light' ? '🌙' : '☀️';
+    document.getElementById('theme-text').textContent = savedTheme === 'light' ? 'Dark' : 'Light';
+  });
+
+  // Section Navigation
+  function showSection(sectionName) {
+    // Hide all sections
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.classList.remove('active');
+    });
+    
+    // Show selected section
+    document.getElementById(sectionName).classList.add('active');
+    
+    // Update nav items
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    event.currentTarget.classList.add('active');
+    
+    // Close sidebar on mobile
+    if (window.innerWidth <= 968) {
+      toggleSidebar();
+    }
+  }
+
+  // Sidebar Toggle for Mobile
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+  }
+
+  // Close sidebar when clicking outside on mobile
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 968) {
+      const sidebar = document.getElementById('sidebar');
+      const toggle = document.querySelector('.mobile-toggle');
+      
+      if (!sidebar.contains(e.target) && !toggle.contains(e.target) && sidebar.classList.contains('open')) {
+        toggleSidebar();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
